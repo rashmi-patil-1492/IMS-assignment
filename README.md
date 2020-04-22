@@ -227,7 +227,7 @@ csv files generated out of experiments are analyzed and plots are plotted using 
 
 Mpd files and source files used in experiments are already generated automatically and uploaded on AWS. However, to generate a new Mpd file, Mp4Box is used.
 
-After installation of Mp4Box, run the following commands
+Please make sure Mp4Box and ffmpeg are installed and after that run the following commands
 	
 	$ ffmpeg -i bbbsource.mp4  -s 640x360 bbbsource360.mp4
 	$ ffmpeg -i bbbsource360.mp4 -c:v libx264 -preset slow -crf 22  -x264opts 'keyint=48:min-keyint=24:no-scenecut' -b:v 500k  -maxrate 1000k -bufsize 2000k -pass 1 -r 24 -c:a copy output_360p-500k.mp4
