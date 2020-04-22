@@ -234,6 +234,7 @@ After installation of Mp4Box, run the following commands
 	$ MP4Box -dash 4000 -frag 4000 -rap -segment-name video_360-500k "output_360p-500k.mp4"  -- mpd file
 
 bbbsource.mp4 file is [original video file] mentioned above. Encoding is done with [H.264] encoder.
+
 [original video file]:https://ims-assignment.s3.eu-west-2.amazonaws.com/bbbsource.mp4
 [H.264]: https://trac.ffmpeg.org/wiki/Encode/H.264 
 
