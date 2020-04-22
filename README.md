@@ -12,7 +12,7 @@ This README explains, steps to
 
 ## Installing ffmpeg
 
-[ffmpeg][] is tool that helped me with video encoding. ffmpeg is a cross platform tool that helps with recording, converting and streaming audio and video files.
+[ffmpeg][] is tool that helped me with video encoding. ffmpeg is a cross platform tool that helps with encoding, converting and streaming audio and video files.
 
 There are two ways to install ffmpeg
 1. Through the source files that can be downloaded from the [download link][]
@@ -36,6 +36,14 @@ After the installation, make sure you check if you have the H264 encoder support
 look for the following line in the terminal console
 
 	$ DE h264            raw H.264 video
+	
+
+## Installing Mp4Box
+
+Mp4Box can be installed by following instructions from its [site]. 
+
+[site]: https://github.com/gpac/gpac/wiki/GPAC-Build-Guide-for-OSX
+
 
 ## Installing Shaka player
 
@@ -215,22 +223,17 @@ csv files generated out of experiments are analyzed and plots are plotted using 
 
 1. [notebook](ims_assignment_notebook.ipynb). 
 
-
 ## How to generate an mpd file
 
 Mpd files and source files used in experiments are already generated automatically and uploaded on AWS. However, to generate a new Mpd file, Mp4Box is used.
 
-Mp4Box can be installed by following instructions from its [site]. 
-
-[site]: https://github.com/gpac/gpac/wiki/GPAC-Build-Guide-for-OSX
-
 After installation of Mp4Box, run the following commands
-
-	$ ffmpeg -i bbbsource.mp4 -c:v libx264 -preset slow -crf 22  -x264opts 'keyint=48:min-keyint=24:no-scenecut' -b:v 800k  -maxrate 1600k -bufsize 3200k -pass 1 -r 24 -s 640x360 -c:a copy output1_360p.mp4
+	
+	$ ffmpeg -i bbbsource.mp4  -s 640x360 bbbsource360.mp4
+	$ ffmpeg -i bbbsource360.mp4 -c:v libx264 -preset slow -crf 22  -x264opts 'keyint=48:min-keyint=24:no-scenecut' -b:v 500k  -maxrate 1000k -bufsize 2000k -pass 1 -r 24 -c:a copy output_360p-500k.mp4
 	$ MP4Box -dash 4000 -frag 4000 -rap -segment-name video_360-500k "output_360p-500k.mp4"  -- mpd file
 
-bbbsource.mp4 file is [original video file] mentioned above. Encoding is done with [H.264] encoder. 
-
+bbbsource.mp4 file is [original video file] mentioned above. Encoding is done with [H.264] encoder.
 [original video file]:https://ims-assignment.s3.eu-west-2.amazonaws.com/bbbsource.mp4
 [H.264]: https://trac.ffmpeg.org/wiki/Encode/H.264 
 
